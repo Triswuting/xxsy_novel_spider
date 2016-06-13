@@ -107,14 +107,11 @@ class xxsy_novel_spider:
         worker_queue.join()
         return url_list
 
-#存储获得的json数据
-
-    def get_novel_menu(self,book_id):#得到小说目
+    def get_novel_menu(self,book_id):#得到小说目录
         url='http://www.xxsy.net/books/'+str(book_id)+'/default.html'
         req = urllib.request.Request(url,headers = self.headers)
         page = urllib.request.urlopen(req).read()
         soup = BeautifulSoup(page)
-        #novel = soup.find_all('title')[0]     # 提取小说名
         menu = []
         all_text = soup.find_all('a')   # 提取记载有小说章节名和链接地址的模块
         regex=re.compile(u'\u7b2c.+\u7ae0')          # 中文正则匹配第..章，去除不必要的链接
@@ -134,7 +131,6 @@ class xxsy_novel_spider:
         soup=BeautifulSoup(html)
         all_text = soup.find_all('div',id={'zjcontentdiv'})
         content = BeautifulSoup(str(all_text[0])).get_text()
-         #content = str(x).replace('</p>','\n').replace('<p>','')
         #print(content)
         return content
 
