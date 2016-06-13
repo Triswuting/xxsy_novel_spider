@@ -151,11 +151,11 @@ if __name__=='__main__':
     xns = xxsy_novel_spider()
     mydb = my_pymongo('localhost', 27017, 'wt_book')  # 连接数据库
     client,db = mydb.get_connected()
-    '''start = time.localtime(time.time())
+    start = time.localtime(time.time())
     print('start:',start)
     url_list = xns.get_book_list(mydb,db)
     end = time.localtime(time.time())
-    print('end:',end)'''
+    print('end:',end)
     coll = mydb.get_collection(db,'book_info')
     result_set = mydb.find(coll,{'vip':0},{'_id':0,'bookid':1,'bookname':1})
     start = time.localtime(time.time())
